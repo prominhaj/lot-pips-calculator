@@ -137,7 +137,7 @@ Share this link anywhere:
 1. Update version in `package.json` (e.g., `"version": "1.0.1"`)
 2. Run:
 ```bash
-npm run release
+pnpm run release
 ```
 
 Done! Auto-creates release with version from package.json.
