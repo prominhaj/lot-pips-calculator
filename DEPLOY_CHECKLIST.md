@@ -57,6 +57,11 @@ This creates:
 ### Option A: Automatic (Recommended)
 
 ```bash
+# Push the workflow file first
+git add .github/workflows/release.yml
+git commit -m "Add release workflow"
+git push origin main
+
 # Create and push tag
 git tag v1.0.0
 git push origin v1.0.0
@@ -127,7 +132,17 @@ Share this link anywhere:
 
 ## 🔄 Future Updates
 
-When you make changes:
+### Option A: Automatic (Easy)
+
+1. Update version in `package.json` (e.g., `"version": "1.0.1"`)
+2. Run:
+```bash
+npm run release
+```
+
+Done! Auto-creates release with version from package.json.
+
+### Option B: Manual
 
 ```bash
 # Make changes to code
@@ -150,9 +165,17 @@ GitHub Actions will auto-create new release!
 
 ## 🆘 Troubleshooting
 
+**403 Error in GitHub Actions?**
+1. Go to your repo → Settings → Actions → General
+2. Scroll to "Workflow permissions"
+3. Select "Read and write permissions"
+4. Click "Save"
+5. Re-run the workflow or push tag again
+
 **GitHub Actions not running?**
 - Make sure `.github/workflows/release.yml` exists
 - Check "Actions" tab is enabled in repo settings
+- Verify workflow has `permissions: contents: write`
 
 **Build fails?**
 - Run `npm install` first
