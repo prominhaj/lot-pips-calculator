@@ -1,0 +1,49 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build extension
+        run: npm run build
+      
+      - name: Create ZIP
+        run: |
+          cd build/chrome-mv3-prod
+          zip -r ../../lot-pips-calculator.zip .
+          cd ../..
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: lot-pips-calculator.zip
+          body: |
+            ## Installation
+            
+            1. Download `lot-pips-calculator.zip`
+            2. Extract the ZIP file
+            3. Open `chrome://extensions/` in your browser
+            4. Enable "Developer mode"
+            5. Click "Load unpacked"
+            6. Select the extracted folder
+            
+            ## Supported Browsers
+            - Chrome, Edge, Brave, Opera (Desktop)
+            - Kiwi Browser (Android)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
