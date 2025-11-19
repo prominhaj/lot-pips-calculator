@@ -15,7 +15,10 @@ A browser extension that calculates lot size, pips, and risk/reward for TradingV
 
 ## ✨ Features
 
-- ✅ Universal calculation for Forex, Gold (XAUUSD), and Crypto
+- ✅ Universal calculation for Forex, Gold (XAUUSD), Crypto, and Indices
+- ✅ **NEW:** GER30/DAX, US30, NAS100, SPX500 support
+- ✅ **NEW:** Risk in USD, EUR, GBP, or % of account
+- ✅ **NEW:** Standalone popup calculator
 - ✅ Auto-detects symbol from TradingView
 - ✅ Shows Lot Size, Margin, Stop Loss ($), Take Profit ($), and R/R ratio
 - ✅ Compact UI with no scrollbars
@@ -75,6 +78,20 @@ npm run build
 
 ## 📖 How to Use
 
+### Method 1: Popup Calculator (NEW)
+
+1. Click the extension icon in your browser
+2. Select your symbol (EURUSD, GER30, BTCUSD, etc.)
+3. Enter trade details:
+   - Entry Price
+   - Stop Loss
+   - Take Profit
+   - Risk Amount (USD/EUR/GBP/%)
+   - Leverage
+4. Click **Calculate**
+
+### Method 2: TradingView Integration
+
 1. Open TradingView chart
 2. Add **Long Position** or **Short Position** drawing tool
 3. Click on the position → Open settings
@@ -82,7 +99,8 @@ npm run build
    - Entry Price
    - Stop Loss Price
    - Take Profit Price
-   - Risk Amount ($)
+   - Risk Amount ($ or %)
+   - Account Size (if using %)
    - Leverage
 5. Scroll to bottom → Click **"Calculate"** button
 
@@ -122,6 +140,18 @@ npm run build
 
 </details>
 
+<details>
+<summary><b>Indices (GER30, DAX, US30, NAS100, SPX500)</b></summary>
+
+- **Pip Size:** 1.0 (1 point)
+- **Pip Value:** $1 per lot per point
+- **Lot Size:** Risk / (Stop Loss Points × $1)
+- **Example:** Entry 23258.67, SL 23197.95 = 60.72 points
+
+**[📖 Full GER30/DAX Guide](GER30_GUIDE.md)**
+
+</details>
+
 ## 📊 Supported Symbols
 
 | Type | Symbols | Pip Size | Status |
@@ -129,12 +159,23 @@ npm run build
 | Forex | EURUSD, GBPUSD, USDJPY, etc. | 0.0001 | ✅ |
 | Gold | XAUUSD, GOLD | 0.01 | ✅ |
 | Crypto | BTCUSD, ETHUSD | 1.0 | ✅ |
+| Indices | GER30, GER40, DAX30, DAX40 | 1.0 | ✅ |
+| Indices | US30, NAS100, SPX500 | 1.0 | ✅ |
+
+### Risk Types Supported
+
+- 💵 **USD** - Fixed dollar amount
+- 💶 **EUR** - Auto-converts to USD
+- 💷 **GBP** - Auto-converts to USD  
+- 📊 **%** - Percentage of account size
 
 ## 💻 Support
 
 - **Desktop:** Chrome, Edge, Brave, Opera
 - **Mobile:** Kiwi Browser (Android)
 - **TradingView:** All chart types
+- **Currencies:** USD, EUR, GBP, % of account
+- **Symbols:** Forex, Gold, Crypto, Indices
 
 ## 🐛 Issues & Support
 
